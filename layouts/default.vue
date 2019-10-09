@@ -2,11 +2,9 @@
     <v-app dark>
         <app-navigation></app-navigation>
         <v-content>
-            <v-container>
-                <nuxt />
-            </v-container>
+            <nuxt />
         </v-content>
-        <v-footer :fixed="fixed" app>
+        <v-footer fixed app>
             <span>&copy; 2019</span>
         </v-footer>
     </v-app>
