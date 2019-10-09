@@ -1,39 +1,63 @@
 <template>
-    <v-app-bar dark app>
-        <nuxt-link to="/" tag="v-toolbar-title" id="title">Shop</nuxt-link>
+    <div>
+        <v-app-bar dark app>
+            <v-app-bar-nav-icon class="d-md-none" @click="drawer = !drawer"></v-app-bar-nav-icon>
+            <nuxt-link to="/" tag="v-toolbar-title" id="title">Shop</nuxt-link>
 
-        <v-spacer></v-spacer>
+            <v-spacer></v-spacer>
 
-        <v-btn v-for="(item,index) in items" :key="index" :to="item.href" text x-large>{{item.text}}</v-btn>
+            <v-btn
+                v-for="(item,index) in items"
+                :key="index"
+                :to="item.href"
+                text
+                x-large
+                class="d-none d-md-flex"
+            >{{item.text}}</v-btn>
 
-        <v-spacer></v-spacer>
+            <v-spacer></v-spacer>
 
-        <v-btn icon>
-            <v-icon>mdi-cart</v-icon>
-        </v-btn>
+            <v-btn icon>
+                <v-icon>mdi-cart</v-icon>
+            </v-btn>
 
-        <v-btn icon>
-            <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-    </v-app-bar>
+            <v-btn icon>
+                <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+        </v-app-bar>
+        <v-navigation-drawer v-model="drawer" absolute style="z-index: 99" temporary>
+            <v-list dense>
+                <v-list-item v-for="item in items" :key="item.title" link :to="item.href">
+                    <!-- <v-list-item-icon>
+                        <v-icon>{{ item.icon }}</v-icon>
+                    </v-list-item-icon>-->
+
+                    <v-list-item-content>
+                        <v-list-item-title>{{ item.text }}</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+        </v-navigation-drawer>
+    </div>
 </template>
 
 <script>
 export default {
     data() {
         return {
+            drawer: false,
             items: [
                 {
                     text: "Video Games",
                     href: "/games"
                 },
                 {
-                    text: "Movies",
-                    href: "/movies"
+                    text: "Books",
+                    href: "/books"
                 },
                 {
-                    text: "Clothes",
-                    href: "/clothes"
+                    text: "Phones",
+                    href: "/phones"
                 }
             ]
         };
