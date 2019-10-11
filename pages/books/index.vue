@@ -1,7 +1,46 @@
 <template>
-    <v-layout row wrap>
-        <v-flex xs12>
-            <h1>Books</h1>
-        </v-flex>
-    </v-layout>
+    <v-container fluid pt-0>
+        <v-layout row justify-center align-center text-center>
+            <v-flex xs12>
+                <v-img src="/images/books.jpg" aspect-ratio="5"></v-img>
+            </v-flex>
+        </v-layout>
+        <v-container grid-list-xl>
+            <v-layout row wrap>
+                <v-flex xs12 md4>
+                    <v-card>
+                        <v-img src="/images/book.jpg"></v-img>
+                        <v-card-title primary-title class="justify-center text-center">
+                            <div>
+                                <h3 class="headline mb-0">Book</h3>
+                                <div>$20</div>
+                            </div>
+                        </v-card-title>
+                    </v-card>
+                </v-flex>
+                <v-flex xs12 md4>
+                    <v-card>
+                        <v-img src="/images/book.jpg"></v-img>
+                        <v-card-title primary-title class="justify-center text-center">
+                            <div>
+                                <h3 class="headline mb-0">Book</h3>
+                                <div>$20</div>
+                            </div>
+                        </v-card-title>
+                    </v-card>
+                </v-flex>
+                <v-flex xs12 md4>
+                    <v-card>
+                        <v-img src="/images/book.jpg"></v-img>
+                        <v-card-title primary-title class="justify-center text-center">
+                            <div>
+                                <h3 class="headline mb-0">Book</h3>
+                                <div>$20</div>
+                            </div>
+                        </v-card-title>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
+    </v-container>
 </template>
