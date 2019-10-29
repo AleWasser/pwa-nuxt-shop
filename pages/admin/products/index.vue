@@ -4,7 +4,7 @@
             <v-col cols="12">
                 <h3 class="display-2">
                     Products
-                    <v-btn color="success">Add product</v-btn>
+                    <v-btn color="success" to="/admin/products/create">Add product</v-btn>
                 </h3>
             </v-col>
             <v-col cols="12">
