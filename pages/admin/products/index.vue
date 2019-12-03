@@ -4,7 +4,21 @@
             <v-col cols="12">
                 <h3 class="display-2">
                     Products
-                    <v-btn color="success" to="/admin/products/create">Add product</v-btn>
+                    <v-menu offset-y>
+                        <template v-slot:activator="{ on }">
+                            <v-btn color="primary" dark v-on="on">Add product</v-btn>
+                        </template>
+                        <v-list>
+                            <v-list-item
+                                v-for="(item, index) in categories"
+                                :key="index"
+                                @click
+                                :to="'/admin/products/' + item.href + '/create'"
+                            >
+                                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
                 </h3>
             </v-col>
             <v-col cols="12">
@@ -126,6 +140,11 @@ export default {
                     protein: 7,
                     iron: "6%"
                 }
+            ],
+            categories: [
+                { title: "Games", href: "games" },
+                { title: "Books", href: "books" },
+                { title: "Phones", href: "phones" }
             ]
         };
     }

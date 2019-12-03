@@ -7,40 +7,26 @@
         </v-row>
         <v-container grid-list-xl>
             <v-row>
-                <v-col cols="12" md="4">
-                    <v-card>
-                        <v-img src="/images/red_dead.jpg"></v-img>
+                <v-col cols="12" md="4" v-for="game in games" :key="game.id">
+                    <nuxt-link :to="'/games/' + game.id" tag="v-card">
+                        <v-img :src="game.imageUrl"></v-img>
                         <v-card-title primary-title class="justify-center text-center">
                             <div>
-                                <h3 class="headline mb-0">Red Dead Redemption 2</h3>
-                                <div>$40</div>
+                                <h3 class="headline mb-0">{{game.title}}</h3>
+                                <div>${{game.price}}</div>
                             </div>
                         </v-card-title>
-                    </v-card>
-                </v-col>
-                <v-col cols="12" md="4">
-                    <v-card>
-                        <v-img src="/images/red_dead.jpg"></v-img>
-                        <v-card-title primary-title class="justify-center text-center">
-                            <div>
-                                <h3 class="headline mb-0">Red Dead Redemption 2</h3>
-                                <div>$40</div>
-                            </div>
-                        </v-card-title>
-                    </v-card>
-                </v-col>
-                <v-col cols="12" md="4">
-                    <v-card>
-                        <v-img src="/images/red_dead.jpg"></v-img>
-                        <v-card-title primary-title class="justify-center text-center">
-                            <div>
-                                <h3 class="headline mb-0">Red Dead Redemption 2</h3>
-                                <div>$40</div>
-                            </div>
-                        </v-card-title>
-                    </v-card>
+                    </nuxt-link>
                 </v-col>
             </v-row>
         </v-container>
     </v-container>
 </template>
+<script>
+import { mapGetters } from "vuex";
+export default {
+    computed: mapGetters({
+        games: "products/getGames"
+    })
+};
+</script>

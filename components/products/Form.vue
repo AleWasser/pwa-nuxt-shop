@@ -1,10 +1,5 @@
 <template>
-    <v-container>
-        <v-row>
-            <v-col cols="12">
-                <h3 class="display-2">Create Product</h3>
-            </v-col>
-        </v-row>
+    <form action="#" method="post" @submit.prevent="onSubmit" enctype="multipart/form-data">
         <v-row>
             <v-col cols="12">
                 <v-card>
@@ -47,33 +42,49 @@
                         </v-row>
                     </v-container>
                     <v-card-actions class="justify-center">
-                        <v-btn color="primary">Create</v-btn>
+                        <v-btn color="primary" type="submit">Create</v-btn>
                         <v-btn color="primary">Cancel</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
         </v-row>
-    </v-container>
+    </form>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-    layout: "admin",
     data() {
         return {
             title: "",
             price: "",
             editions: ["Standard", "Special", "Ultimate"],
+            image: null,
             selectedEditions: [],
             countFiles: 0
         };
     },
     methods: {
+        ...mapActions({
+            createProduct: "products/createProduct"
+        }),
         selectFile() {
             this.$refs.inputFile.click();
         },
         onFileSelected(event) {
             this.countFiles = event.target.files.length;
+            this.image = event.target.files[0];
+        },
+        onSubmit() {
+            let data = {
+                title: this.title,
+                price: this.price,
+                editions: this.selectedEditions,
+                category: this.$route.params.category,
+                image: this.image
+            };
+            this.createProduct(data);
         }
     }
 };

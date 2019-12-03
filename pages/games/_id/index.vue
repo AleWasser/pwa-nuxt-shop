@@ -1,5 +1,6 @@
 <template>
     <v-container grid-list-xs>
+        {{getProductById('-LtPgj91zW3METQBODBq', 'games')}}
         <v-row>
             <v-col cols="12" md="6">
                 <v-img src="/images/red_dead.jpg" aspect-ratio="1.1"></v-img>
@@ -30,3 +31,11 @@
         </v-row>
     </v-container>
 </template>
+
+<script>
+import { mapGetters } from "vuex";
+
+export default {
+    computed: mapGetters({ getProductById: "products/getProductById" })
+};
+</script>
