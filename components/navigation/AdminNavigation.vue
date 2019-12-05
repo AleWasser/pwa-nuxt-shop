@@ -1,7 +1,7 @@
 <template>
     <v-navigation-drawer fixed>
         <v-list>
-            <v-list-item v-for="item in items" :key="item.title" link :to="item.href">
+            <v-list-item v-for="item in items" :key="item.title" link :to="item.href" exact>
                 <v-list-item-icon>
                     <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-icon>
@@ -28,7 +28,7 @@ export default {
                 {
                     title: "Dashboard",
                     icon: "mdi-monitor-dashboard",
-                    href: "/admin/dashboard"
+                    href: "/admin"
                 },
                 {
                     title: "Products",

@@ -33,10 +33,10 @@
                     </v-card-title>
                     <v-data-table :headers="headers" :items="getProducts" :search="search">
                         <template v-slot:item.action="{ item }">
-                            <v-btn icon small :to=" '/' + item.category + '/' + item.id">
+                            <v-btn icon small :to="'/products/' + item.category + '/' + item.id">
                                 <v-icon>mdi-eye</v-icon>
                             </v-btn>
-                            <v-btn icon small :to="item.category + '/edit/' + item.id">
+                            <v-btn icon small :to="'products/' +item.category + '/edit/' + item.id">
                                 <v-icon>mdi-pencil</v-icon>
                             </v-btn>
                             <v-btn icon small>
