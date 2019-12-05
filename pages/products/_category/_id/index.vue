@@ -8,15 +8,18 @@
                 <h4 class="display-1">{{product.title}}</h4>
                 <p class="headline">${{product.price}}</p>
                 <v-divider></v-divider>
-                <v-row align="center">
-                    <v-col cols="3">
-                        <p class="headline">Edition</p>
-                    </v-col>
-                    <v-col cols="9">
-                        <v-select :items="product.editions"></v-select>
-                    </v-col>
-                </v-row>
-                <v-divider></v-divider>
+                <div v-if="this.$route.params.category == 'games'">
+                    <v-row align="center">
+                        <v-col cols="3">
+                            <p class="headline">Edition</p>
+                        </v-col>
+                        <v-col cols="9">
+                            <v-select :items="product.editions"></v-select>
+                        </v-col>
+                    </v-row>
+                    <v-divider></v-divider>
+                </div>
+
                 <v-col>
                     <h5 class="headline pb-2">Description</h5>
                     <p
@@ -38,7 +41,10 @@ export default {
     computed: {
         ...mapGetters({ getProductById: "products/getProductById" }),
         product() {
-            return this.getProductById("-LtPgj91zW3METQBODBq", "games");
+            return this.getProductById(
+                this.$route.params.id,
+                this.$route.params.category
+            );
         }
     }
 };

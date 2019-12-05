@@ -49,15 +49,15 @@ export default {
             items: [
                 {
                     text: "Video Games",
-                    href: "/games"
+                    href: "/products/games"
                 },
                 {
                     text: "Books",
-                    href: "/books"
+                    href: "/products/books"
                 },
                 {
                     text: "Phones",
-                    href: "/phones"
+                    href: "/products/phones"
                 }
             ]
         };

@@ -16,6 +16,17 @@ export default {
       default:
         break;
     }
-
+  },
+  getProductByCategory: (state) => (category) => {
+    switch (category) {
+      case 'games':
+        return state.games;
+      case 'books':
+        return state.books;
+      case 'phones':
+        return state.phones;
+      default:
+        break;
+    }
   }
 }
