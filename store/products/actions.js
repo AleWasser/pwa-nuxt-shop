@@ -20,13 +20,37 @@ export default {
         } else {
           dispatch('storeProducts');
         }
-        // this.$router.push('/admin/adopciones');
+        this.$router.push('/admin/products');
         // commit('setNotification', {
         //   text: 'Adopcion creada',
         //   color: 'success'
         // }, {
         //   root: true
         // });
+      })
+      .catch(err => console.error(err));
+  },
+  editProduct({
+    dispatch,
+    commit
+  }, data) {
+    return db.ref(`data/products/${data.category}/${data.id}`)
+      .update(data)
+      .then(() => {
+        if (data.image) {
+          dispatch('uploadImage', {
+            data: data
+          });
+        } else {
+          dispatch('storeProducts');
+        }
+        this.$router.push('/admin/products');
+        /* commit('setNotification', {
+          text: 'Adopcion editada',
+          color: 'success'
+        }, {
+          root: true
+        }); */
       })
       .catch(err => console.error(err));
   },

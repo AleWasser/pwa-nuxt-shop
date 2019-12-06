@@ -101,7 +101,7 @@ export default {
     },
     methods: {
         ...mapActions({
-            createProduct: "products/createProduct"
+            editProduct: "products/editProduct"
         }),
         selectFile() {
             this.$refs.inputFile.click();
@@ -115,6 +115,7 @@ export default {
         },
         onSubmit() {
             let data = {
+                id: this.getProduct.id,
                 title: document.getElementById("title").value,
                 price: document.getElementById("price").value,
                 description: document.getElementById("description").value,
@@ -122,8 +123,7 @@ export default {
                 category: this.category,
                 image: this.image
             };
-            console.log(data);
-            //this.createProduct(data);
+            this.editProduct(data);
         }
     }
 };
