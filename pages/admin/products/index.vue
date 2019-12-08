@@ -39,7 +39,7 @@
                             <v-btn icon small :to="'products/' +item.category + '/edit/' + item.id">
                                 <v-icon>mdi-pencil</v-icon>
                             </v-btn>
-                            <v-btn icon small>
+                            <v-btn icon small @click="onClickDelete(item)">
                                 <v-icon>mdi-delete</v-icon>
                             </v-btn>
                         </template>
@@ -47,6 +47,17 @@
                 </v-card>
             </v-col>
         </v-row>
+        <v-dialog v-model="dialog" width="290">
+            <v-card>
+                <v-card-title class="headline justify-center">Delete this item?</v-card-title>
+
+                <v-card-actions class="justify-center">
+                    <v-btn color="error" text @click="onDelete">Delete</v-btn>
+
+                    <v-btn color="primary" text @click="dialog = false">Cancel</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-container>
 </template>
 
@@ -67,13 +78,30 @@ export default {
                 { text: "Price", value: "price" },
                 { text: "Actions", value: "action", sortable: false }
             ],
-            categories: ["games", "books", "phones"]
+            categories: ["games", "books", "phones"],
+            dialog: false,
+            deleteProduct: null
         };
     },
     computed: {
         ...mapGetters({
             getProducts: "products/getProducts"
         })
+    },
+    methods: {
+        onClickDelete(data) {
+            this.deleteProduct = data;
+            this.dialog = true;
+        },
+        onDelete() {
+            this.$store
+                .dispatch("products/deleteProductById", this.deleteProduct)
+                .then(() => {
+                    this.deleteProduct = null;
+                    this.dialog = false;
+                })
+                .catch(err => console.error(err));
+        }
     }
 };
 </script>

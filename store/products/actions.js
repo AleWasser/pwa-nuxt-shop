@@ -64,6 +64,28 @@ export default {
       })
       .catch(err => console.log(err));
   },
+  deleteProductById({
+    dispatch
+  }, data) {
+    return db.ref(`data/products/${data.category}/${data.id}`)
+      .remove()
+      .then(() => {
+        if (data.imageUrl) {
+          dispatch('deleteImage', {
+            data
+          });
+        } else {
+          dispatch('storeMascotas');
+        }
+        /* commit('setNotification', {
+          text: 'Adopcion eliminada',
+          color: 'error'
+        }, {
+          root: true
+        }); */
+      })
+      .catch(err => console.error(err))
+  },
   uploadImage({
     dispatch
   }, payload) {
@@ -96,7 +118,7 @@ export default {
   deleteImage({
     dispatch
   }, payload) {
-    return storage.ref(`images/products/${payload.data.id}`)
+    return storage.ref(`images/products/${payload.data.category}/${payload.data.id}`)
       .delete()
       .then(() => {
         dispatch('storeProducts');

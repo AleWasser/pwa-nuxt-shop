@@ -12,11 +12,12 @@
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.0.0-0",
-    "firebase": "^7.2.1",
+    "core-js": "^2.6.10",
+    "firebase": "^7.5.2",
     "js-cookie": "^2.2.1",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.10.2"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.0.0"
+    "@nuxtjs/vuetify": "^1.9.1"
   }
 }
