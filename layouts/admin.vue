@@ -19,6 +19,7 @@
 import AdminNavigation from "~/components/navigation/AdminNavigation.vue";
 
 export default {
+    middleware: ["check-auth", "auth"],
     components: {
         "app-admin-navigation": AdminNavigation
     }
