@@ -30,7 +30,8 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({
-    commit
+    commit,
+    dispatch
   }, context) {
     return db.ref('data')
       .once('value')
@@ -42,6 +43,11 @@ export const actions = {
       })
       .catch(err => console.log(err));
   },
+  nuxtClientInit({
+    dispatch
+  }) {
+    dispatch('cart/fetchCartProducts');
+  }
   //   userLogin({
   //     commit,
   //     state

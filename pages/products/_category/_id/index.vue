@@ -27,7 +27,7 @@
                     >{{product.description ? product.description : 'No description available'}}</p>
                 </v-col>
                 <v-col>
-                    <v-btn large>Add to cart</v-btn>
+                    <v-btn large @click="$store.dispatch('cart/storeProduct', product)">Add to cart</v-btn>
                 </v-col>
             </v-col>
         </v-row>

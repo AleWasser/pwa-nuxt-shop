@@ -42,6 +42,9 @@ export default {
    */
   plugins: [{
     src: '~/plugins/firebase.js'
+  }, {
+    src: '~/plugins/nuxt-client-init.client.js',
+    mode: 'client'
   }],
   /*
    ** Nuxt.js dev-modules

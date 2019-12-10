@@ -17,8 +17,16 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn icon>
-                <v-icon>mdi-cart</v-icon>
+            <v-btn icon to="/cart" class="mr-5">
+                <client-only>
+                    <v-badge bottom>
+                        <template
+                            v-slot:badge
+                            v-if="cartProducts.length > 0"
+                        >{{cartProducts.length}}</template>
+                        <v-icon>mdi-cart</v-icon>
+                    </v-badge>
+                </client-only>
             </v-btn>
         </v-app-bar>
         <v-navigation-drawer v-model="drawer" absolute style="z-index: 99" temporary>
@@ -57,6 +65,11 @@ export default {
                 }
             ]
         };
+    },
+    computed: {
+        cartProducts() {
+            return this.$store.getters["cart/getCartProducts"];
+        }
     }
 };
 </script>
