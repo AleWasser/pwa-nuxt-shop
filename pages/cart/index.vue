@@ -39,7 +39,7 @@
                 </v-col>
                 <v-col cols="12" class="text-center">
                     <h4 class="display-1">Total: ${{getCartTotal}}</h4>
-                    <v-btn color="primary" class="mt-2">Checkout</v-btn>
+                    <v-btn color="primary" class="mt-2" to="/checkout">Checkout</v-btn>
                 </v-col>
             </v-row>
             <v-row v-else class="justify-center">
