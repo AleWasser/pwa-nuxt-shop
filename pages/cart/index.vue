@@ -39,7 +39,7 @@
                 </v-col>
                 <v-col cols="12" class="text-center">
                     <h4 class="display-1">Total: ${{getCartTotal}}</h4>
-                    <v-btn color="primary" class="mt-2" to="/checkout">Checkout</v-btn>
+                    <v-btn color="primary" class="mt-2" @click="dialog = true">Credit card payment</v-btn>
                 </v-col>
             </v-row>
             <v-row v-else class="justify-center">
@@ -49,6 +49,31 @@
                     </v-card>
                 </v-col>
             </v-row>
+            <v-dialog v-model="dialog" width="400">
+                <v-card>
+                    <v-card-title class="headline justify-center">Payment</v-card-title>
+
+                    <v-card-text class="justify-center">
+                        <v-text-field name="name" label="Name" id="name"></v-text-field>
+                        <v-text-field name="email" label="Email" id="email"></v-text-field>
+                        <label>Credit card</label>
+                        <card
+                            class="stripe-card"
+                            :class="{ complete }"
+                            stripe="pk_test_udEPikKSL9kIEASnWD666esf"
+                            @change="complete = $event.complete"
+                        />
+                    </v-card-text>
+
+                    <v-card-actions class="justify-center">
+                        <v-btn
+                            class="pay-with-stripe primary"
+                            @click="pay"
+                            :disabled="!complete"
+                        >Send</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
         </client-only>
     </v-container>
 </template>
@@ -56,12 +81,36 @@
 <script>
 import { mapGetters } from "vuex";
 
+import { Card, createToken } from "vue-stripe-elements-plus";
+
 export default {
+    components: { Card },
+    data() {
+        return {
+            complete: false,
+            dialog: false
+        };
+    },
     computed: {
         ...mapGetters({
             getCartProducts: "cart/getCartProducts",
             getCartTotal: "cart/getCartTotal"
         })
+    },
+    methods: {
+        pay() {
+            createToken().then(data => console.log(data.token));
+        }
     }
 };
 </script>
+
+<style>
+.stripe-card {
+    border: 1px solid grey;
+    background-color: white;
+}
+.stripe-card.complete {
+    border-color: green;
+}
+</style>
