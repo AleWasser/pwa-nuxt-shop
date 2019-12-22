@@ -22,7 +22,7 @@
                     <v-badge bottom>
                         <template
                             v-slot:badge
-                            v-if="cartProducts.length > 0"
+                            v-if="cartProducts && cartProducts.length > 0"
                         >{{cartProducts.length}}</template>
                         <v-icon>mdi-cart</v-icon>
                     </v-badge>

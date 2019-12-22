@@ -1,7 +1,7 @@
 <template>
     <v-container fluid pt-0>
         <client-only>
-            <v-row class="justify-center" v-if="getCartProducts.length > 0">
+            <v-row class="justify-center" v-if="getCartProducts && getCartProducts.length > 0">
                 <v-col cols="12" class="text-center">
                     <h3 class="display-2">Your Cart</h3>
                     ({{getCartProducts.length}} items)
@@ -54,8 +54,8 @@
                     <v-card-title class="headline justify-center">Payment</v-card-title>
 
                     <v-card-text class="justify-center">
-                        <v-text-field name="name" label="Name" id="name"></v-text-field>
-                        <v-text-field name="email" label="Email" id="email"></v-text-field>
+                        <v-text-field v-model="name" name="name" label="Name" id="name"></v-text-field>
+                        <v-text-field v-model="email" name="email" label="Email" id="email"></v-text-field>
                         <label>Credit card</label>
                         <card
                             class="stripe-card"
@@ -88,7 +88,9 @@ export default {
     data() {
         return {
             complete: false,
-            dialog: false
+            dialog: false,
+            name: "",
+            email: ""
         };
     },
     computed: {
@@ -99,7 +101,29 @@ export default {
     },
     methods: {
         pay() {
-            createToken().then(data => console.log(data.token));
+            createToken()
+                .then(res => {
+                    let data = {
+                        name: this.name,
+                        email: this.email,
+                        token: res.token
+                    };
+
+                    return fetch("/api/invoice", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    });
+                })
+                .then(response => {
+                    if (response.status === 200) {
+                        this.$store.dispatch("cart/clearCart");
+                    }
+                    this.dialog = false;
+                })
+                .catch(err => console.error(err));
         }
     }
 };

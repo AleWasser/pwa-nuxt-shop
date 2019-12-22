@@ -50,6 +50,12 @@ export default {
     mode: 'client'
   }],
   /*
+   ** Nuxt.js server middleware
+   */
+  serverMiddleware: [
+    '~/api/invoice'
+  ],
+  /*
    ** Nuxt.js dev-modules
    */
   buildModules: [

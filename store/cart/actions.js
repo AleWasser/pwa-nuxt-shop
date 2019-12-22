@@ -24,5 +24,11 @@ export default {
     let products = storageProducts.filter(product => product.id !== id);
     localStorage.setItem('products', JSON.stringify(products));
     dispatch('fetchCartProducts');
+  },
+  clearCart({
+    dispatch
+  }) {
+    localStorage.removeItem('products');
+    dispatch('fetchCartProducts');
   }
 }
