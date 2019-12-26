@@ -5,7 +5,13 @@
             <v-row>
                 <v-col cols="12" md="4" v-for="item in products" :key="item.id">
                     <nuxt-link :to="'/products/' + item.category + '/' + item.id" tag="v-card">
-                        <v-img :src="item.imageUrl"></v-img>
+                        <v-img :src="item.imageUrl">
+                            <template v-slot:placeholder>
+                                <v-row class="fill-height ma-0" align="center" justify="center">
+                                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                </v-row>
+                            </template>
+                        </v-img>
                         <v-card-title primary-title class="justify-center text-center">
                             <div>
                                 <h3 class="headline mb-0">{{item.title}}</h3>
