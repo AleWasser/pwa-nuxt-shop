@@ -21,12 +21,12 @@ export default {
           dispatch('storeProducts');
         }
         this.$router.push('/admin/products');
-        // commit('setNotification', {
-        //   text: 'Adopcion creada',
-        //   color: 'success'
-        // }, {
-        //   root: true
-        // });
+        commit('setNotification', {
+          text: 'Product created',
+          color: 'success'
+        }, {
+          root: true
+        });
       })
       .catch(err => console.error(err));
   },
@@ -45,12 +45,12 @@ export default {
           dispatch('storeProducts');
         }
         this.$router.push('/admin/products');
-        /* commit('setNotification', {
-          text: 'Adopcion editada',
+        commit('setNotification', {
+          text: 'Product edited',
           color: 'success'
         }, {
           root: true
-        }); */
+        });
       })
       .catch(err => console.error(err));
   },
@@ -77,12 +77,12 @@ export default {
         } else {
           dispatch('storeMascotas');
         }
-        /* commit('setNotification', {
-          text: 'Adopcion eliminada',
-          color: 'error'
+        commit('setNotification', {
+          text: 'Product deleted',
+          color: 'success'
         }, {
           root: true
-        }); */
+        });
       })
       .catch(err => console.error(err))
   },

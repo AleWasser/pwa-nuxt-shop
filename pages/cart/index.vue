@@ -118,9 +118,19 @@ export default {
                     });
                 })
                 .then(response => {
-                    if (response.status === 200) {
-                        this.$store.dispatch("cart/clearCart");
-                    }
+                    return response.json();
+                })
+                .then(data => {
+                    this.$store.dispatch("orders/createOrder", {
+                        email: this.email,
+                        products: this.getCartProducts
+                    });
+                    this.$store.dispatch("cart/clearCart");
+                    this.$store.commit("setNotification", {
+                        text:
+                            "Your order has been accepted, an email has been sent to your account",
+                        color: "success"
+                    });
                     this.dialog = false;
                 })
                 .catch(err => console.error(err));

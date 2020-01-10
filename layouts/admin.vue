@@ -1,5 +1,6 @@
 <template>
     <v-app>
+        <app-notification></app-notification>
         <v-content>
             <v-container>
                 <v-row>
@@ -17,11 +18,13 @@
 
 <script>
 import AdminNavigation from "~/components/navigation/AdminNavigation.vue";
+import Notification from "~/components/Notification.vue";
 
 export default {
     middleware: ["check-auth", "auth"],
     components: {
-        "app-admin-navigation": AdminNavigation
+        "app-admin-navigation": AdminNavigation,
+        "app-notification": Notification
     }
 };
 </script>

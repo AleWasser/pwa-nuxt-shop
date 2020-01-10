@@ -35,14 +35,14 @@
                                 ></v-select>
                             </v-col>
                         </v-row>
-                        <v-row>
+                        <v-row class="justify-center text-center">
+                            <v-img
+                                :src="getProduct.imageUrl"
+                                max-width="300"
+                                max-height="300"
+                                class="mb-2"
+                            ></v-img>
                             <v-col cols="12">
-                                <v-img
-                                    :src="getProduct.imageUrl"
-                                    width="200"
-                                    height="200"
-                                    class="mb-2"
-                                ></v-img>
                                 <v-btn color="success" @click="selectFile">Select an image</v-btn>
                                 <p class="d-inline ml-2" v-if="countFiles == 1">Archivo Cargado</p>
                                 <input
@@ -67,7 +67,7 @@
                     </v-container>
                     <v-card-actions class="justify-center">
                         <v-btn color="primary" type="submit">Edit</v-btn>
-                        <v-btn color="primary">Cancel</v-btn>
+                        <v-btn color="primary" to="/admin/products">Cancel</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>

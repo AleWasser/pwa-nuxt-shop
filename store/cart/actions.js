@@ -1,6 +1,7 @@
 export default {
   storeProduct({
-    dispatch
+    dispatch,
+    commit
   }, data) {
     let products = [];
 
@@ -11,6 +12,12 @@ export default {
     products.push(data);
     localStorage.setItem('products', JSON.stringify(products));
     dispatch('fetchCartProducts');
+    commit('setNotification', {
+      text: 'Product added to cart',
+      color: 'success'
+    }, {
+      root: true
+    });
   },
   fetchCartProducts({
     commit
@@ -18,15 +25,23 @@ export default {
     commit('setProducts', JSON.parse(localStorage.getItem('products')));
   },
   deleteProductCartById({
-    dispatch
+    dispatch,
+    commit
   }, id) {
     let storageProducts = JSON.parse(localStorage.getItem('products'));
     let products = storageProducts.filter(product => product.id !== id);
     localStorage.setItem('products', JSON.stringify(products));
     dispatch('fetchCartProducts');
+    commit('setNotification', {
+      text: 'Product deleted from cart',
+      color: 'success'
+    }, {
+      root: true
+    });
   },
   clearCart({
-    dispatch
+    dispatch,
+    commit
   }) {
     localStorage.removeItem('products');
     dispatch('fetchCartProducts');

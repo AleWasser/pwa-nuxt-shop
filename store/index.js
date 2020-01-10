@@ -7,7 +7,7 @@ export const state = () => ({
   breakpoint: '',
   //   token: null,
   //   user: {},
-  //   notification: null
+  notification: null
 });
 
 export const mutations = {
@@ -20,9 +20,9 @@ export const mutations = {
   //   clearToken(state) {
   //     state.token = null;
   //   },
-  //   setNotification(state, payload) {
-  //     state.notification = payload;
-  //   },
+  setNotification(state, payload) {
+    state.notification = payload;
+  },
   //   setUserData(state, payload) {
   //     state.user = payload;
   //   }
@@ -39,6 +39,7 @@ export const actions = {
         let data = res.val();
         if (data) {
           commit('products/setProducts', data.products);
+          commit('orders/setOrders', data.orders);
         }
       })
       .catch(err => console.log(err));
@@ -193,9 +194,9 @@ export const getters = {
   //   isAuthenticated(state) {
   //     return state.token != null;
   //   },
-  //   getNotification(state) {
-  //     return state.notification;
-  //   },
+  getNotification(state) {
+    return state.notification;
+  },
   //   getUserData(state) {
   //     return state.user;
   //   }

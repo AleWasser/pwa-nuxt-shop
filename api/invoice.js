@@ -6,19 +6,7 @@ import dotenv from 'dotenv';
 const app = express();
 dotenv.config();
 
-//app.use(express.url());
-
 app.use(express.json());
-
-//* Testing
-/* var transport = nodemailer.createTransport({
-  host: "smtp.mailtrap.io",
-  port: 2525,
-  auth: {
-    user: "da345cad880b68",
-    pass: "105fde131dda95"
-  }
-}); */
 
 const transport = nodemailer.createTransport(sendgridTansport({
   auth: {
@@ -72,10 +60,11 @@ app.post('/', (req, res, next) => {
       console.log(error);
       return res.status(500).json('ERROR');
     }
-    console.log('Message sent: %s', info.messageId);
-    return res.status(200).json('OK');
+    console.log('Mail sent');
+    return res.status(200).json({
+      token_id: req.body.token.id
+    });
   });
-
 
 });
 

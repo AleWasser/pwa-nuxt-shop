@@ -47,7 +47,7 @@
                     </v-container>
                     <v-card-actions class="justify-center">
                         <v-btn color="primary" type="submit">Create</v-btn>
-                        <v-btn color="primary">Cancel</v-btn>
+                        <v-btn color="primary" to="/admin/products">Cancel</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>

@@ -35,9 +35,12 @@ export default {
             Cookie.set('userName', data.user.displayName);
             Cookie.set('email', data.user.email);
             this.$router.push('/admin');
-            /* commit('setNotification', {
-              text: 'Usuario logueado'
-            }); */
+            commit('setNotification', {
+              text: 'Logged-in',
+              color: 'success'
+            }, {
+              root: true
+            });
           })
         //} else { //* Si no esta en la base de datos, eliminarlo
         /* commit('setNotification', {
@@ -50,10 +53,12 @@ export default {
       })
       .catch(err => {
         console.error(err);
-        /* commit('setNotification', {
-          text: 'Usuario o contraseña incorrectos',
-          color: 'warning'
-        }); */
+        commit('setNotification', {
+          text: 'User/Password incorrect',
+          color: 'error'
+        }, {
+          root: true
+        });
       });
   },
   editUser({
@@ -143,5 +148,11 @@ export default {
       localStorage.removeItem("tokenExpiration");
     }
     this.$router.push("/admin/login");
+    commit('setNotification', {
+      text: 'Logged out',
+      color: 'success'
+    }, {
+      root: true
+    });
   },
 }
