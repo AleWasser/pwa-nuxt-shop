@@ -44,11 +44,17 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [{
-    src: '~/plugins/firebase.js'
-  }, {
-    src: '~/plugins/nuxt-client-init.client.js',
-    mode: 'client'
-  }],
+      src: '~/plugins/firebase.js'
+    }, {
+      src: '~/plugins/nuxt-client-init.client.js',
+      mode: 'client'
+    },
+    {
+      src: '~/plugins/vue-chart.js',
+      mode: 'client'
+    }
+
+  ],
   /*
    ** Nuxt.js server middleware
    */

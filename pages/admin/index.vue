@@ -4,11 +4,18 @@
         <v-row>
             <v-col cols="12">
                 <v-card>
-                    <v-card-title primary-title>
-                        <div>
-                            <h3 class="headline mb-0">Stats</h3>
-                        </div>
-                    </v-card-title>
+                    <v-card-title primary-title class="pb-0">Stats</v-card-title>
+                    <v-card-text>
+                        <v-container>
+                            <v-row>
+                                <v-col cols="12">
+                                    <client-only>
+                                        <my-bar :sales="sales" :height="100"></my-bar>
+                                    </client-only>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </v-card-text>
                 </v-card>
             </v-col>
             <v-col cols="6">
@@ -23,7 +30,7 @@
             <v-col cols="6">
                 <v-card>
                     <v-card-title primary-title class="pb-0">Sales</v-card-title>
-                    <v-card-content>
+                    <v-card-text>
                         <v-container pt-0>
                             <v-row>
                                 <v-col cols="12">
@@ -45,7 +52,7 @@
                                 </v-col>
                             </v-row>
                         </v-container>
-                    </v-card-content>
+                    </v-card-text>
                 </v-card>
             </v-col>
         </v-row>
@@ -57,9 +64,24 @@ import { mapGetters } from "vuex";
 
 export default {
     layout: "admin",
+    data() {
+        return {
+            // dataCollection: {
+            //     labels: [Object.keys(sales)],
+            //     datasets: [
+            //         {
+            //             label: "Data One",
+            //             backgroundColor: "#f87979",
+            //             data: [sales]
+            //         }
+            //     ]
+            // }
+        };
+    },
     computed: {
         ...mapGetters({
-            orders: "orders/getLastOrders"
+            orders: "orders/getLastOrders",
+            sales: "orders/getSales"
         })
     }
 };
