@@ -28,5 +28,12 @@ export default {
       default:
         break;
     }
+  },
+  getProductsQuantity(state) {
+    return {
+      games: [...state.games].length,
+      books: [...state.books].length,
+      phones: [...state.phones].length
+    }
   }
 }

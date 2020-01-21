@@ -95,6 +95,18 @@ export default {
     }
   },
   /*
+   ** PWA configuration
+   */
+  pwa: {
+    workbox: {
+      dev: true
+    },
+    manifest: {
+      name: 'PWA nuxt',
+      lang: 'en'
+    }
+  },
+  /*
    ** Build configuration
    */
   build: {
