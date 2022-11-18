@@ -20,7 +20,7 @@
     "js-cookie": "^2.2.1",
     "nodemailer": "^6.4.2",
     "nodemailer-sendgrid-transport": "^0.2.0",
-    "nuxt": "^2.10.2",
+    "nuxt": "^2.15.8",
     "vue-chartjs": "^3.5.0",
     "vue-stripe-elements-plus": "^0.3.2"
   },
